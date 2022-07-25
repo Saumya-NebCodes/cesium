@@ -1756,6 +1756,15 @@ Viewer.prototype.destroy = function () {
     this._selectionIndicator = this._selectionIndicator.destroy();
   }
 
+  // destroy inspector if it has attached to viewer
+  if(defined(this.cesiumInspector)){
+    this.cesiumInspector.destroy();
+  }
+
+  if(defined(this.cesium3DTilesInspector)){
+    this.cesium3DTilesInspector.destroy();
+  }
+
   if (this._destroyClockViewModel) {
     this._clockViewModel = this._clockViewModel.destroy();
   }

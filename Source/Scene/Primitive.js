@@ -2531,6 +2531,12 @@ Primitive.prototype.destroy = function () {
 };
 
 function setReady(primitive, frameState, state, error) {
+  frameState.afterRender.push(function () {
+    // add handler if primitive is destroyed during current render frame
+    if (primitive.isDestroyed()) {
+      return;
+    }
+  });
   primitive._completeLoad(frameState, state, error);
 }
 export default Primitive;
